@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>UPI QR code generator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="column">
+          <form onsubmit="return genQR(this)">
+            <fieldset>
+              <label for="accNo">Account No:</label>
+              <input type="number" placeholder="Account No:" id="accNo">
+              <label for="ifscCode">IFSC Code</label>
+              <input type="text" placeholder="IFSC Code" id="ifscCode">
+              <label for="accountHolder">Name of person</label>
+              <input type="text" placeholder="Name of the person" id="accountHolder">
+              <input class="button-primary" type="submit" value="Generate QR code">
+            </fieldset>
+          </form>
+          <a href="#" class="button button-outline" target="_blank" id="appLink"><strong>Open UPI App</strong></a>
+          <label for="sharelink">Sharable link</label>
+          <input type="text" readonly id="sharelink">
+          <img src="//:0" alt="" id="outputImg">
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/qrcode@1.4.4/build/qrcode.js" charset="utf-8"></script>
+    <script charset="utf-8">
+
+      function $(sel){
+        return document.getElementById(sel);
+      }
+
+      function renderQR(accNo, ifscCode, accountHolder){
+
+        var upiString = 'upi://pay?pa='+ accNo + '@'+ ifscCode + '.ifsc.npci&pn='+ accountHolder +'&am=';
+
+        var opts = {
+          errorCorrectionLevel: 'H',
+          margin: 1,
+          scale:8,
+          color: {
+            dark:"#580000",
+            light:"#fff"
+          }
+        }
+
+        $('appLink').href = upiString;
+
+        QRCode.toDataURL(upiString, opts, function (err, dataUrl) {
+          if(err){
+            alert('Sorry, Something went wrong while generating QR code');
+            return;
+          }
+          $('outputImg').src = dataUrl;
+          console.log('success!');
+        })
+
+      }
+
+      function genQR(){
+        var accNo = $('accNo').value;
+        var ifscCode = $('ifscCode').value;
+        var accountHolder = $('accountHolder').value;
+
+        location.hash = [accNo,ifscCode,accountHolder].join('||');
+        $('sharelink').value = location
+
+        renderQR( accNo, ifscCode, accountHolder );
+        return false;
+      }
+
+      (function(){
+        if(location.hash.length > 20 ){
+          var data = decodeURIComponent( location.hash.slice(1) ).split('||');
+
+          $('accNo').value = data[0];
+          $('ifscCode').value = data[1];
+          $('accountHolder').value = data[2];
+          genQR();
+        }
+      })();
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css" />
+
+    <a class="github-fork-ribbon" href="https://github.com/harish2704/UPI-QR-code-from-bank-details" data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>
+  </body>
+</html>
