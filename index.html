@@ -69,7 +69,7 @@
         var ifscCode = $('ifscCode').value;
         var accountHolder = $('accountHolder').value;
 
-        location.hash = [accNo,ifscCode,accountHolder].join('||');
+        location.hash = [accNo,ifscCode,accountHolder].join(';');
         $('sharelink').value = location
 
         renderQR( accNo, ifscCode, accountHolder );
@@ -78,7 +78,7 @@
 
       (function(){
         if(location.hash.length > 20 ){
-          var data = decodeURIComponent( location.hash.slice(1) ).split('||');
+          var data = decodeURIComponent( location.hash.slice(1) ).split(';');
 
           $('accNo').value = data[0];
           $('ifscCode').value = data[1];
