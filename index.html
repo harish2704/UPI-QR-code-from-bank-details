@@ -77,6 +77,9 @@
       }
 
       (function(){
+        if(location.search.length){
+          location.search = '';
+        }
         if(location.hash.length > 20 ){
           var data = decodeURIComponent( location.hash.slice(1) ).split(';');
 
