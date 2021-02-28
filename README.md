@@ -3,12 +3,12 @@ Generate shareable QR code, link from bank details to use with UPI payment apps
 
 ## [Try it now](https://harish2704.github.io/UPI-qr-gen/)
 
-It first generate a [UPI](https://www.npci.org.in/what-we-do/upi/product-overview) id from bank details and then generates following items for end users.
+This tool first generates a [UPI](https://www.npci.org.in/what-we-do/upi/product-overview) id from bank details provided and then generates following items for end users to reuse.
 
 1. QR code image
 2. Sharable URL
-    - Shareable URLs **do not send any banking data to any third party servers**. The data is stored in "hashbang" which is only accessible to web browsers and not sent to servers
-3. Mobile friendly link which will invoke the installed UPI application in any device
+    - Shareable URLs **This tool does not save/send any banking data to any third party servers**. The data is stored in "hashbang" which is only accessible to web browsers and not sent to servers
+3. Mobile friendly link which will invoke the UPI application of your choice on any device
 
 ### Powered by
 
