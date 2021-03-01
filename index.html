@@ -12,6 +12,14 @@
         border-radius: 4px;
         padding: 2%;
       }
+      .button-blue{
+        background-color: #007bff;
+        border-color: #007bff;
+      }
+      .button-green{
+        background-color: #28a745;
+        border-color: #28a745;
+      }
     </style>
   </head>
   <body>
@@ -30,8 +38,8 @@
             </fieldset>
           </form>
           <div class="outputWrapper">
-            <a href="#" class="button button-outline" target="_blank" id="appLink"><strong>Open UPI App</strong></a>
-            <a onclick="copyToClipboard()" class="button button-outline" target="_blank" id="copyLink"><strong>Copy Link</strong></a>
+            <a href="#" class="button button-green" target="_blank" id="appLink"><strong>Pay using UPI App</strong></a>
+            <a onclick="copyToClipboard()" class="button button-blue" target="_blank" id="copyLink"><strong>Copy Link</strong></a>
             <label for="sharelink">Sharable link</label>
             <input type="text" readonly id="sharelink">
             <img src="//:0" alt="" id="outputImg">
@@ -70,7 +78,7 @@
           margin: 1,
           scale:8,
           color: {
-            dark:"#9b4dca",
+            dark:"#580000",
             light:"#fff"
           }
         }
